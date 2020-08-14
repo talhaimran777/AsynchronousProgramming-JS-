@@ -1,20 +1,34 @@
 /* alert("Async Programming"); */
 
+/* 
+    Async Programming in js  can be done using two ways
+    ->  Old way ( By the use of callbacks ) 
+    ->  New way ( By the use of promises )
 
-const btn = document.querySelector("button");
-console.log(btn);
+*/
+console.log("Start");
+function logIn(email, password, callback){
+
+    setTimeout(() => {
+        console.log("We got the data");
+        callback({userEmail: email, userPass: password});
+    }, 5000);
 
 
-btn.addEventListener('click' , () => {
-    let myDate;
-    for(let i = 0; i < 10000000; i++){
-        let date = new Date();
-        myDate = date;
-    }
-    console.log(myDate);
-    let pElem = document.createElement('p');
-    pElem.textContent = 'This is a newly-added paragraph.';
-    document.body.appendChild(pElem);
+ /*    setTimeout(() => {
+        console.log("Now we get the data");
+        return {userEmail: email, userPass: password};
+    }, 0); */
 
+    /* return {userEmail: email, userPass: password}; */
+}
+
+
+let userData = logIn("talhaimran284@gmail.com", "talha157", (user) =>{
+    console.log(user.userEmail);
+    console.log(user.userPass);
 });
 
+//console.log(userData);
+
+console.log("End");
