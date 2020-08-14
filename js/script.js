@@ -1,34 +1,51 @@
-/* alert("Async Programming"); */
+/* console.log("1");
 
-/* 
-    Async Programming in js  can be done using two ways
-    ->  Old way ( By the use of callbacks ) 
-    ->  New way ( By the use of promises )
+setTimeout(() =>{
+    console.log(2);
+}, 5000 );
 
-*/
-console.log("Start");
-function logIn(email, password, callback){
+console.log("3"); */
 
-    setTimeout(() => {
-        console.log("We got the data");
-        callback({userEmail: email, userPass: password});
-    }, 5000);
-
-
- /*    setTimeout(() => {
-        console.log("Now we get the data");
-        return {userEmail: email, userPass: password};
-    }, 0); */
-
-    /* return {userEmail: email, userPass: password}; */
+// This is used as a call-back function
+function greetings(name){
+    console.log(`Wellcome ${name} to this great festival!`);
 }
 
 
-let userData = logIn("talhaimran284@gmail.com", "talha157", (user) =>{
-    console.log(user.userEmail);
-    console.log(user.userPass);
+function introduction(firstName, lastName, callback){
+    let fullName = null;
+
+    fullName = `${firstName} ${lastName}`;
+    callback(fullName);
+}
+
+introduction("Talha", "Imran", greetings);
+
+/* Working on promises in java script */
+
+const weather = true;
+let promise = new Promise((resolve, reject) =>{
+    if(weather){
+        let dateDetails = {
+            name: "Mcdonalds",
+            location: "At Fortress ( Lahore )",
+            table: 5,
+        }
+
+        resolve(dateDetails);
+    }else{
+        reject(new Error('Bad weather, so no Date'))
+    }
+
+    
 });
 
-//console.log(userData);
+console.log(promise);
 
-console.log("End");
+promise.then((data) =>{
+    console.log(data);
+});
+
+promise.catch((error) =>{
+    console.log(error.message);
+});
