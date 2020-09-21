@@ -12,8 +12,11 @@ const request = new XMLHttpRequest();
 
 // readystatechange must be in small letters
 request.addEventListener('readystatechange',()=>{
-    if(request.readyState === 4){
-        console.log(request.responseText);
+    if(request.readyState === 4 && request.status === 200){
+        console.log(request , request.responseText);
+    }
+    else if(request.readyState === 4){
+        console.log('Could not fetch the data!');
     }
 });
 
