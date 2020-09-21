@@ -40,7 +40,7 @@ let getTodos = (cb)=>{
     });
 
     //Open a request to sent to the server
-    request.open('GET','https://jsonplacehoder.typicode.com/todos/');
+    request.open('GET','https://jsonplaceholder.typicode.com/todos/');
 
     // Now send the opened request
     request.send();
@@ -48,9 +48,20 @@ let getTodos = (cb)=>{
 
 
 getTodos((err, data)=>{
-    console.log(`
-The Error = ${err}\nThe data  = ${data}    
-    `)
+//     console.log(`
+// The Error = ${err}\nThe data  = ${data}    
+//     `);
+
+    // Convert the data from the server to js array with objects
+
+    // console.log(JSON.parse(data));
+    let result = JSON.parse(data);
+
+    // Let's print the first object in the array
+    console.log(result[0]);
+
+    // Access result[0].title property
+    console.log(result[0].title);
 });
 
 // Running it in browser End
