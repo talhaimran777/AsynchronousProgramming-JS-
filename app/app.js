@@ -68,17 +68,42 @@ let getTodos = (link , cb)=>{
 // });
 
 
+// Callback hell
+// getTodos('./1.json', (err, data)=>{
+//     console.log(data);
 
-getTodos('./1.json', (err, data)=>{
-    console.log(data);
+//     setTimeout(()=>{
+//         getTodos('./2.json', (err, data)=>{
+//             console.log(data);
 
-    getTodos('./2.json', (err, data)=>{
-        console.log(data);
+//             setTimeout(()=>{
+//                 getTodos('./3.json', (err, data)=>{
+//                     console.log(data);
+//                 });
+//             }, 2000);
+           
+//         });
+//     }, 2000);
+    
+// });
+// Callback hell
 
-        getTodos('./3.json', (err, data)=>{
-            console.log(data);
-        });
+// Basics of Promises
+let getSomething = ()=>{
+    return new Promise((resolve, reject)=>{
+
+        // In this callback function that is passed to the promise object
+        // you usaully make a request to the server for something
+        resolve('Got the data!');
+        // reject('Error in fetching the data');
     });
+}
+
+getSomething().then((data)=>{
+    console.log(data)
+}).catch((err)=>{
+    console.log(err);
 });
+// Basics of Promises End
 
 // Running it in browser End
