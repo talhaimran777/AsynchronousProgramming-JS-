@@ -1,5 +1,6 @@
 // Making request to get data from the server
 
+
 // const request = new XMLHttpRequest();
 // console.log(request);
 
@@ -29,24 +30,30 @@
 // request.send();
 
 // Let's add the above defined code to getTodos function
-let getTodos = (link , cb)=>{
-    const request = new XMLHttpRequest();
-    request.addEventListener('readystatechange',()=>{
-        if(request.readyState === 4 && request.status === 200){
-            return cb(undefined, request.responseText);
-        }
-        else if(request.readyState === 4){
-            return cb('Could not fetch the data', undefined);
-        }
+let getTodos = (resource)=>{
+
+    // Let's convert this function to a promise
+
+    return new Promise((resolve, reject)=>{
+        const request = new XMLHttpRequest();
+        request.addEventListener('readystatechange',()=>{
+            if(request.readyState === 4 && request.status === 200){
+                resolve(request.responseText);
+            }
+            else if(request.readyState === 4){
+                reject('Could not fetch the data');
+            }
+        });
+
+        //Open a request to sent to the server
+        // request.open('GET','https://jsonplaceholder.typicode.com/todos/');
+
+        request.open('GET', resource);
+
+        // Now send the opened request
+        request.send();
     });
-
-    //Open a request to sent to the server
-    // request.open('GET','https://jsonplaceholder.typicode.com/todos/');
-
-    request.open('GET', link);
-
-    // Now send the opened request
-    request.send();
+    
 }
 
 
@@ -88,22 +95,39 @@ let getTodos = (link , cb)=>{
 // });
 // Callback hell
 
+
 // Basics of Promises
-let getSomething = ()=>{
-    return new Promise((resolve, reject)=>{
+// let getSomething = ()=>{
+//     return new Promise((resolve, reject)=>{
 
-        // In this callback function that is passed to the promise object
-        // you usaully make a request to the server for something
-        resolve('Got the data!');
-        // reject('Error in fetching the data');
-    });
-}
+//         // In this callback function that is passed to the promise object
+//         // you usaully make a request to the server for something
+//         resolve('Got the data!');
+//         // reject('Error in fetching the data');
+//     });
+// }
 
-getSomething().then((data)=>{
-    console.log(data)
-}).catch((err)=>{
-    console.log(err);
-});
+// getSomething().then((data)=>{
+//     console.log(data)
+// }).catch((err)=>{
+//     console.log(err);
+// });
+
+/* Call the promise function here */
+getTodos('./1.json')
+.then( data =>  console.log(data))
+.catch( err => console.log(console.log(err)));
+
+getTodos('./2.json')
+.then( data =>  console.log(data))
+.catch( err => console.log(console.log(err)));
+
+getTodos('./3.json')
+.then( data =>  console.log(data))
+.catch( err => console.log(console.log(err)));
+
+
 // Basics of Promises End
+
 
 // Running it in browser End
