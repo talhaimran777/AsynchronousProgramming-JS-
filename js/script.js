@@ -6,6 +6,7 @@ setTimeout(() =>{
 
 console.log("3"); */
 
+// Just the pushing of master branch to github
 // This is used as a call-back function
 function greetings(name){
     console.log(`Wellcome ${name} to this great festival!`);
