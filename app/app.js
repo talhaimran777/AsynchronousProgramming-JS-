@@ -114,17 +114,44 @@ let getTodos = (resource)=>{
 // });
 
 /* Call the promise function here */
+
+// This is a bad way of writting promises code
+// let's use chainning of promises
+// getTodos('./1.json')
+// .then( data =>  console.log(data))
+// .catch( err => console.log(console.log(err)));
+
+// getTodos('./2.json')
+// .then( data =>  console.log(data))
+// .catch( err => console.log(console.log(err)));
+
+// getTodos('./3.json')
+// .then( data =>  console.log(data))
+// .catch( err => console.log(console.log(err)));
+
+
+// Promise chainning Started
 getTodos('./1.json')
-.then( data =>  console.log(data))
-.catch( err => console.log(console.log(err)));
+.then(data => {
+    console.log('Promise 1 resolved, ',data);
+    // In order to start chainning the promise you have to return the child promise
 
-getTodos('./2.json')
-.then( data =>  console.log(data))
-.catch( err => console.log(console.log(err)));
+    return getTodos('./2.json')
+    .then(data => {
+        console.log('Promise 2 resolved, ',data);
 
-getTodos('./3.json')
-.then( data =>  console.log(data))
-.catch( err => console.log(console.log(err)));
+        return getTodos('./3.json')
+        .then(data => {
+            console.log('Promise 3 resolved, ',data);
+        })
+    })
+
+    // That's how you chain promises to stay  away from callback hell
+})
+
+// This .catch method will fire for every promise mentioned above
+.catch(err => console.log(err));
+// Promise chainning Started End
 
 
 // Basics of Promises End
