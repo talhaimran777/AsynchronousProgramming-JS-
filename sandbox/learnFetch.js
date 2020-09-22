@@ -21,17 +21,22 @@
 
 // Now with the addition of async. This function will return a promise
 const getTodos = async ()=>{
-    let response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+   /*  let response = await fetch('https://jsonplaceholder.typicode.com/todos/'); */
+   
+    let response = await fetch('../app/1.json');
 
-    let data = await response.json();
-    
-    return data;
+    if(response.status !== 200){
+        throw new Error('Invalid Resource!');
+    }else{
+        let data = await response.json();
+        return data;
+    }  
 }
 
 // Let's test it
 getTodos()
 .then(data => console.log(data))
-.catch(err => console.log(err))
+.catch(err => console.log(err));
 
 // Best way to fetch the data
 // Basics of how to use a fetch api
